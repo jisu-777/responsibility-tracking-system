@@ -20,6 +20,7 @@ export interface ColumnConfig<T> {
   renderCell: (item: T, index: number) => React.ReactNode
   searchable?: boolean
   filterable?: boolean
+  headerStyle?: string
 }
 
 export interface DataTableProps<T extends { id: number }> {
@@ -43,7 +44,7 @@ export function DataTable<T extends { id: number }>({
   state,
   actions,
   columns,
-  itemsPerPage = 10,
+  itemsPerPage = 20,
   onAdd,
   onDownload,
   onEdit,
@@ -114,7 +115,7 @@ export function DataTable<T extends { id: number }>({
       {
         key: "index",
         header: (
-          <div className="text-base text-black">
+          <div className="">
             No.
           </div>
         ),
@@ -128,7 +129,7 @@ export function DataTable<T extends { id: number }>({
       key: col.key,
       widthClass: col.width,
       header: col.filterable ? createFilterPopover(col.key, col.title) : (
-        <div className="text-base text-black">
+        <div className={` ${col.headerStyle || ''}`}>
           {col.title}
         </div>
       ),
@@ -140,20 +141,18 @@ export function DataTable<T extends { id: number }>({
       dynamicColumns.push({
         key: "actions",
         header: (
-          <div className="text-base text-black">
+          <div className=" ">
             작업
           </div>
         ),
-        widthClass: "w-20 text-center",
+        widthClass: "min-w-[50px] w-[50px]",
         renderCell: (row) => (
-          <Button
-            variant="outline"
-            size="sm"
+          <div
             onClick={() => onEdit(row.id)}
-            className="h-8 px-3 flex items-center gap-1"
+            className="h-8 flex items-center justify-center text-sm cursor-pointer whitespace-nowrap "
           >
             수정
-          </Button>
+          </div>
         ),
       })
     }

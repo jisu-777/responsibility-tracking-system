@@ -19,7 +19,7 @@ export default function ExecutiveResponsibilityPage() {
   // useTable 훅 사용
   const [state, actions] = useTable<ExecutiveResponsibilityData>({
     initialData: mockExecutiveResponsibilityData,
-    itemsPerPage: 10,
+    itemsPerPage: 15,
     searchFields: ['name', 'position', 'organization', 'category', 'code', 'responsibility', 'detailCode', 'detailContent', 'registrant', 'approver'],
     filterColumns: ['name', 'position', 'organization', 'category', 'code', 'responsibility', 'detailCode', 'detailContent', 'assignmentDate', 'startDate', 'registrant', 'approver', 'status'],
   })
@@ -126,24 +126,24 @@ export default function ExecutiveResponsibilityPage() {
   // 컬럼 설정
   const columns: ColumnConfig<ExecutiveResponsibilityData>[] = [
     
-    {
-      key: "name",
-      title: "성명",
-      width: "min-w-[120px] w-[120px]",
-      filterable: true,
-      renderCell: (item) => (
-        <div className="text-base text-black">
-          {item.name}
-        </div>
-      )
-    },
+         {
+       key: "name",
+       title: "성명",
+       width: "min-w-[100px] w-[100px]",
+       filterable: true,
+       renderCell: (item) => (
+         <div className="text-sm text-black truncate max-w-[100px]" title={item.name}>
+           {item.name}
+         </div>
+       )
+     },
     {
       key: "position",
       title: "직책",
-      width: "min-w-[150px] w-[150px]",
+      width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black truncate max-w-[120px] ">
           {item.position}
         </div>
       ),
@@ -151,10 +151,10 @@ export default function ExecutiveResponsibilityPage() {
     {
       key: "organization",
       title: "관리대상조직",
-      width: "min-w-[180px] w-[180px]",
+      width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.organization}
         </div>
       ),
@@ -162,10 +162,10 @@ export default function ExecutiveResponsibilityPage() {
     {
       key: "code",
       title: "책무코드",
-      width: "min-w-[150px] w-[150px]",
+      width: "min-w-[140px] w-[140px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.code}
         </div>
       ),
@@ -173,13 +173,13 @@ export default function ExecutiveResponsibilityPage() {
     {
       key: "responsibility",
       title: "책무",
-      width: "min-w-[400px] max-w-[600px]",
+      width: "min-w-[200px] max-w-[200px]",
       filterable: true,
       renderCell: (item) => (
         <div 
-          className="text-base text-black truncate"
-          onMouseEnter={(e) => handleTooltipShow(item.responsibility, e)}
-          onMouseLeave={handleTooltipHide}
+          className="text-sm text-black truncate max-w-[200px]"
+         
+          
         >
           {item.responsibility}
         </div>
@@ -191,7 +191,7 @@ export default function ExecutiveResponsibilityPage() {
       width: "min-w-[150px] w-[150px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.detailCode}
         </div>
       ),
@@ -203,7 +203,7 @@ export default function ExecutiveResponsibilityPage() {
       filterable: true,
       renderCell: (item) => (
         <div 
-          className="text-base text-black truncate"
+          className="text-sm text-black truncate"
           onMouseEnter={(e) => handleTooltipShow(item.detailContent, e)}
           onMouseLeave={handleTooltipHide}
         >
@@ -217,7 +217,7 @@ export default function ExecutiveResponsibilityPage() {
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.assignmentDate}
         </div>
       ),
@@ -228,7 +228,7 @@ export default function ExecutiveResponsibilityPage() {
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.startDate}
         </div>
       ),
@@ -239,7 +239,7 @@ export default function ExecutiveResponsibilityPage() {
       width: "min-w-[100px] w-[100px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.registrant}
         </div>
       ),
@@ -250,7 +250,7 @@ export default function ExecutiveResponsibilityPage() {
       width: "min-w-[100px] w-[100px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.approver}
         </div>
       ),
@@ -261,7 +261,7 @@ export default function ExecutiveResponsibilityPage() {
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.status}
         </div>
       ),
@@ -289,7 +289,7 @@ export default function ExecutiveResponsibilityPage() {
           state={state}
           actions={actions}
           columns={columns}
-          itemsPerPage={10}
+          itemsPerPage={15}
           onAdd={actions.modals.openAddModal}
           onDownload={handleDownload}
           onEdit={actions.handleEdit}

@@ -12,7 +12,6 @@ export type TableColumn<T = any> = {
   key: string
   header?: React.ReactNode
   className?: string
-  stickyLeft?: string
   widthClass?: string
   renderCell?: (item: T, index: number) => React.ReactNode
 }
@@ -59,16 +58,17 @@ const ResponsibilityTable = React.memo(function ResponsibilityTable<T = any>({
 }: Props<T>) {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-full caption-bottom text-sm border-collapse table-auto border-b border-b-brandGrey-700">
-        <thead className="[&_tr]:border-b border-t-2 border-t-brand-500 ">
+      <table className="w-full min-w-full caption-bottom text-sm border-collapse table-auto border-b border-b-brandGrey-400">
+                 <thead className="[&_tr]:border-b border-t-2 border-t-brand-500/50 ">
           <tr>
             {columns.map((col) => (
-              <th
-                key={col.key}
-                className={
-                  col.widthClass + "z-20 border-r border-b border-b-brand-500/50 bg-brand-500/10 px-2 py-1.5 text-left align-middle font-semibold text-base text-black"
-                }
-              >
+                             <th
+                 key={col.key}
+                                   className={[
+                    col.widthClass,
+                    "z-20 border-r border-b border-b-brandGrey-200 bg-brandGrey-50 px-2 py-0.5 text-left align-middle font-semibold text-sm "
+                  ].join(" ")}
+                >
                 {col.header}
               </th>
             ))}
@@ -88,7 +88,7 @@ const ResponsibilityTable = React.memo(function ResponsibilityTable<T = any>({
                     key={col.key}
                     className={[
                       col.widthClass,
-                      "z-10 border-r  px-2 py-1.5 align-middle ",
+                      "z-10 border-r px-2 py-0.5 align-middle text-sm",
                     ].join(" ")}
                   >
                     {col.renderCell?.(item, index)}

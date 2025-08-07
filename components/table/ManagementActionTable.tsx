@@ -259,20 +259,20 @@ export function ManagementActionTable({ data, title, description }: ManagementAc
           </div>
 
                      {/* 검색 결과 표시 */}
-           {searchTerm && (
-             <div className="mb-4 text-base text-gray-600">
-               "{searchTerm}" 검색 결과: {filteredData.length}건
-             </div>
-           )}
+                       {searchTerm && (
+              <div className="mb-4 text-sm text-gray-600">
+                "{searchTerm}" 검색 결과: {filteredData.length}건
+              </div>
+            )}
 
           {/* 테이블 */}
           <div className="overflow-x-auto">
             <table className="w-full min-w-full caption-bottom text-sm border-collapse table-fixed border-b border-b-brandGrey-700">
               <thead className="[&_tr]:border-b border-t-2 border-t-brand-500">
                 <tr>
-                  <th className="z-20 border-r border-b border-b-brand-500/50 bg-brand-500/10 px-2 py-1.5 text-left align-middle font-semibold text-base text-black w-16">No.</th>
+                  <th className="z-20 border-r border-b border-b-brand-500/50 bg-brand-500/10 px-2 py-1.5 text-left align-middle font-semibold text-sm text-black w-16">No.</th>
                   {columns.map((column) => (
-                    <th key={column.key} className={`z-20 border-r border-b border-b-brand-500/50 bg-brand-500/10 px-2 py-1.5 text-left align-middle font-semibold text-base text-black ${column.width}`}>
+                    <th key={column.key} className={`z-20 border-r border-b border-b-brand-500/50 bg-brand-500/10 px-2 py-1.5 text-left align-middle font-semibold text-sm text-black ${column.width}`}>
                       <ColumnFilterPopover
                         column={column.key}
                         title={column.title}
@@ -294,30 +294,30 @@ export function ManagementActionTable({ data, title, description }: ManagementAc
                   const status = getProgressStatus(item.progress, item.actualCompletionDate)
                   return (
                                          <tr key={item.id} className="align-top border-b transition-colors hover:bg-brandGrey-100">
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-16">
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-16">
                          {(currentPage - 1) * itemsPerPage + index + 1}
                        </td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-48">{item.group}</td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-32">{item.responsibleExecutive}</td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-32">{item.department}</td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-48">{item.managementAction}</td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-24">{item.startDate}</td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-24">{item.expectedCompletionDate}</td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-24">{item.actualCompletionDate || "-"}</td>
-                                               <td className="z-10 border-r px-2 py-1.5 align-middle text-base w-24">
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-48">{item.group}</td>
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-32">{item.responsibleExecutive}</td>
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-32">{item.department}</td>
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-48">{item.managementAction}</td>
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-24">{item.startDate}</td>
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-24">{item.expectedCompletionDate}</td>
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-24">{item.actualCompletionDate || "-"}</td>
+                                               <td className="z-10 border-r px-2 py-1.5 align-middle text-sm w-24">
                           <ProgressBar progress={item.progress} />
                         </td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base w-20">
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm w-20">
                          <Badge className={`text-xs ${getStatusColor(status)}`}>
                            {status}
                          </Badge>
                        </td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base text-gray-900 w-48">
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm text-gray-900 w-48">
                          <div className="max-w-xs truncate" title={item.remarks}>
                            {item.remarks}
                          </div>
                        </td>
-                       <td className="z-10 border-r px-2 py-1.5 align-middle text-base w-20">
+                       <td className="z-10 border-r px-2 py-1.5 align-middle text-sm w-20">
                         <Button
                           variant="outline"
                           size="sm"

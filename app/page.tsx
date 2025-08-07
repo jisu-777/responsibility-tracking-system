@@ -1,165 +1,148 @@
 "use client"
 
-import { useCallback } from "react"
-import { Badge } from "@/components/ui/badge"
-
-import { DataTable, ColumnConfig } from "@/components/table/DataTable"
-import AddResponsibilityModal from "@/components/table/AddResponsibilityModal"
-import EditResponsibilityModal from "@/components/table/EditResponsibilityModal"
-import DeleteConfirmModal from "@/components/table/DeleteConfirmModal"
-
-import {
-  ResponsibilityData,
-  ResponsibilityFormData,
-} from "@/types"
-import { mockResponsibilityData } from "@/data/mockData"
-import { useTable } from "@/hooks/table/useTable"
+import ActivityCard from "@/components/dashboard/ActivityCard"
+import StatCard from "@/components/dashboard/StatCard"
+import ProgressCard from "@/components/dashboard/ProgressCard"
+import MiniChart from "@/components/dashboard/MiniChart"
+import ChartCard from "@/components/dashboard/ChartCard"
+import AlertCard from "@/components/dashboard/AlertCard"
+import Segmentation from "@/components/dashboard/Segmentation"
+import Satisfaction from "@/components/dashboard/Satisfaction"
+import { Users, Target, TrendingUp, Activity } from "lucide-react"
 
 export default function DashboardPage() {
-  // useTable 훅 사용
-  const [state, actions] = useTable<ResponsibilityData>({
-    initialData: mockResponsibilityData,
-    itemsPerPage: 10,
-    searchFields: ['category', 'code', 'responsibility', 'detailCode', 'detailContent'],
-    filterColumns: ['category', 'code', 'responsibility', 'detailCode', 'detailContent'],
-  })
-
-  // 다운로드 기능
-  const handleDownload = useCallback(() => {
-    const csv = [
-      ["책무구분", "책무코드", "책무", "책무세부코드", "책무세부내용"],
-      ...state.filteredData.map((item) => [
-        item.category,
-        item.code,
-        item.responsibility,
-        item.detailCode,
-        item.detailContent,
-      ]),
-    ]
-      .map((r) => r.map((f) => `"${f}"`).join(","))
-      .join("\n")
-
-    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement("a")
-    link.href = url
-    link.download = "responsibility_master.csv"
-    link.click()
-  }, [state.filteredData])
-
-  // 책무 추가 핸들러
-  const handleAddResponsibility = useCallback((formData: ResponsibilityFormData) => {
-    const newId = Math.max(...state.data.data.map((d) => d.id), 0) + 1
-    const newResponsibility: ResponsibilityData = {
-      id: newId,
-      title: formData.responsibility,
-      description: formData.detailContent,
-      assignee: "",
-      status: "활성",
-      priority: "보통",
-      dueDate: "",
-      category: formData.category,
-      code: formData.code,
-      responsibility: formData.responsibility,
-      detailCode: formData.detailCode,
-      detailContent: formData.detailContent,
-    }
-    actions.handleAdd(newResponsibility)
-  }, [state.data.data, actions])
-
-  // 책무 수정 핸들러
-  const handleEditSubmit = useCallback((id: number, formData: ResponsibilityFormData) => {
-    actions.handleUpdate(id, {
-      category: formData.category,
-      code: formData.code,
-      responsibility: formData.responsibility,
-      detailCode: formData.detailCode,
-      detailContent: formData.detailContent,
-    })
-  }, [actions])
-
-  // 컬럼 설정
-  const columns: ColumnConfig<ResponsibilityData>[] = [
-    {
-      key: "category",
-      title: "책무구분",
-      width: "w-40",
-      filterable: true,
-      renderCell: (item) => <Badge variant="outline">{item.category}</Badge>,
-    },
-    {
-      key: "code",
-      title: "책무코드",
-      width: "w-32",
-      filterable: true,
-      renderCell: (item) => item.code,
-    },
-    {
-      key: "responsibility",
-      title: "책무",
-      width: "min-w-[500px]",
-      filterable: true,
-      renderCell: (item) => (
-        <div className="whitespace-normal break-words" title={item.responsibility}>
-          {item.responsibility}
-        </div>
-      ),
-    },
-    {
-      key: "detailCode",
-      title: "책무세부코드",
-      width: "min-w-32",
-      filterable: true,
-      renderCell: (item) => item.detailCode,
-    },
-    {
-      key: "detailContent",
-      title: "책무세부내용",
-      width: "min-w-[400px]",
-      filterable: true,
-      renderCell: (item) => (
-        <div className="whitespace-normal break-words" title={item.detailContent}>
-          {item.detailContent}
-        </div>
-      ),
-    },
-  ]
-
   return (
-    <>
-      <DataTable
-        title="마스터 관리"
-        description="책무 구조 및 세부 내용을 관리합니다."
-        state={state}
-        actions={actions}
-        columns={columns}
-        itemsPerPage={10}
-        onAdd={actions.modals.openAddModal}
-        onDownload={handleDownload}
-        onEdit={actions.handleEdit}
-        onDelete={actions.handleConfirmDelete}
-        onUpdate={actions.handleUpdate}
-      />
+    <div className="min-h-screen bg-gray-50">
+      <div className="p-6 space-y-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">대시보드</h1>
+          <p className="text-gray-600">오늘의 활동과 성과를 확인하세요</p>
+        </div>
+        
+        {/* 통계 카드들 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StatCard 
+            title="총 임원 수"
+            value="24"
+            change="+12%"
+            changeType="positive"
+            icon={Users}
+          />
+          <StatCard 
+            title="목표 달성률"
+            value="78%"
+            change="+5%"
+            changeType="positive"
+            icon={Target}
+          />
+          <StatCard 
+            title="평균 성과"
+            value="85"
+            change="-2%"
+            changeType="negative"
+            icon={TrendingUp}
+          />
+          <StatCard 
+            title="활동 수"
+            value="156"
+            change="+23%"
+            changeType="positive"
+            icon={Activity}
+          />
+        </div>
 
-      <AddResponsibilityModal
-        isOpen={state.modals.isAddModalOpen}
-        onClose={actions.modals.closeAddModal}
-        onAdd={handleAddResponsibility}
-      />
+        {/* 차트 및 진행률 카드들 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ChartCard 
+            title="월별 성과 추이"
+            description="이번 달 성과 현황을 확인하세요"
+            value="85.2%"
+            change="+12.5%"
+            changeType="positive"
+          />
+          <ProgressCard 
+            title="분기별 목표"
+            value={78}
+            target={90}
+            description="3분기 목표 달성률"
+            icon={Target}
+          />
+        </div>
 
-      <EditResponsibilityModal
-        isOpen={state.modals.isEditModalOpen}
-        onClose={actions.modals.closeEditModal}
-        onEdit={handleEditSubmit}
-        editingItem={state.modals.editingItem}
-      />
+        {/* 새로운 컴포넌트들 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Segmentation />
+          <Satisfaction />
+        </div>
 
-      <DeleteConfirmModal
-        isOpen={state.modals.isDeleteModalOpen}
-        onClose={actions.modals.closeDeleteModal}
-        onConfirm={actions.handleConfirmDelete}
-        selectedCount={state.data.selectedItems.length}
-      />
-    </>
+        {/* 미니 차트들 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <MiniChart 
+            title="주간 활동"
+            value="45"
+            change="+8%"
+            changeType="positive"
+          />
+          <MiniChart 
+            title="월간 성과"
+            value="92"
+            change="+15%"
+            changeType="positive"
+          />
+          <MiniChart 
+            title="평균 점수"
+            value="87"
+            change="-3%"
+            changeType="negative"
+          />
+        </div>
+
+        {/* 알림 및 활동 카드들 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <AlertCard 
+              title="주의가 필요한 항목"
+              description="3개의 책임 항목이 마감일을 초과했습니다."
+              count={3}
+              type="warning"
+            />
+            <AlertCard 
+              title="이번 주 일정"
+              description="5개의 새로운 활동이 예정되어 있습니다."
+              count={5}
+              type="info"
+            />
+          </div>
+          
+          <div className="space-y-4">
+            <ActivityCard 
+              title="새로운 책임 등록"
+              description="김철수님이 새로운 책임을 등록했습니다."
+              time="2시간 전"
+              user={{
+                name: "김철수",
+                avatar: undefined,
+                initials: "김"
+              }}
+              type="comment"
+              count={5}
+            />
+            <ActivityCard 
+              title="목표 달성 축하"
+              description="이영희님이 분기 목표를 달성했습니다."
+              time="4시간 전"
+              user={{
+                name: "이영희",
+                avatar: undefined,
+                initials: "이"
+              }}
+              type="like"
+              count={12}
+            />
+           
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }

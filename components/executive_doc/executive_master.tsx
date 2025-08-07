@@ -72,7 +72,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.departmentCode}
         </div>
       ),
@@ -83,7 +83,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[150px] w-[150px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.departmentName}
         </div>
       ),
@@ -94,7 +94,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[200px] w-[200px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black" title={item.departmentPath}>
+        <div className="text-sm text-black" title={item.departmentPath}>
           {item.departmentPath}
         </div>
       ),
@@ -106,7 +106,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.groupCode}
         </div>
       ),
@@ -117,7 +117,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[150px] w-[150px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.groupName}
         </div>
       ),
@@ -128,7 +128,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[150px] w-[150px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.positionName}
         </div>
       ),
@@ -139,7 +139,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[150px] w-[150px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.responsibleCommittee}
         </div>
       ),
@@ -150,7 +150,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.chairmanMember}
         </div>
       ),
@@ -161,7 +161,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[100px] w-[100px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.meetingFrequency}
         </div>
       ),
@@ -172,7 +172,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[300px] max-w-[400px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="whitespace-normal break-words text-base text-black" title={item.keyDeliberationMatter}>
+        <div className="whitespace-normal break-words text-sm text-black" title={item.keyDeliberationMatter}>
           {item.keyDeliberationMatter}
         </div>
       ),
@@ -184,7 +184,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[100px] w-[100px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.rank}
         </div>
       ),
@@ -195,7 +195,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="font-medium text-base text-black">
+        <div className="font-medium text-sm text-black">
           {item.name}
         </div>
       ),
@@ -206,7 +206,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[80px] w-[80px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.employeeId}
         </div>
       ),
@@ -219,7 +219,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       renderCell: (item) => (
         <a 
           href={`mailto:${item.email}`}
-          className="text-blue-600 hover:text-blue-800 underline text-base"
+          className="text-blue-600 hover:text-blue-800 underline text-sm"
           title={`${item.email}로 이메일 보내기`}
         >
           {item.email}
@@ -232,7 +232,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.executiveRegistrationDate}
         </div>
       ),
@@ -243,7 +243,7 @@ export function ExecutiveMasterTable({ data, title, description }: ExecutiveMast
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.executiveDismissalDate || "-"}
         </div>
       ),

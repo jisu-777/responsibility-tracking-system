@@ -1,6 +1,5 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowUpRight, ArrowDownRight } from "lucide-react"
 
 interface MiniChartProps {
@@ -17,13 +16,11 @@ export default function MiniChart({
   changeType 
 }: MiniChartProps) {
   return (
-    <Card>
-      <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold mb-2">{value}</div>
-        <p className={`text-xs flex items-center gap-1 ${
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow duration-200">
+      <div className="mb-4">
+        <h3 className="text-gray-600 text-sm font-medium mb-2">{title}</h3>
+        <div className="text-2xl font-bold text-gray-900 mb-2">{value}</div>
+        <div className={`flex items-center gap-1 text-xs font-medium ${
           changeType === "positive" ? "text-green-600" : "text-red-600"
         }`}>
           {changeType === "positive" ? (
@@ -32,11 +29,18 @@ export default function MiniChart({
             <ArrowDownRight className="h-3 w-3" />
           )}
           {change}
-        </p>
-        <div className="h-16 bg-gray-100 rounded mt-4 flex items-center justify-center">
-          <span className="text-gray-500 text-xs">미니 차트</span>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+      
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 h-16 flex items-center justify-center">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+          <div className="w-2 h-3 bg-blue-400 rounded-full"></div>
+          <div className="w-2 h-4 bg-blue-300 rounded-full"></div>
+          <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+          <div className="w-2 h-3 bg-blue-500 rounded-full"></div>
+        </div>
+      </div>
+    </div>
   )
 } 

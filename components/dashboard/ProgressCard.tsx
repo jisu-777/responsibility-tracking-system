@@ -1,8 +1,5 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-
 interface ProgressCardProps {
   title: string
   value: number
@@ -21,19 +18,35 @@ export default function ProgressCard({
   const percentage = (value / target) * 100
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        <Icon className="h-4 w-4 text-muted-foreground" />
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">{value}%</div>
-        <p className="text-xs text-muted-foreground mb-4">{description}</p>
-        <Progress value={percentage} className="h-2" />
-        <p className="text-xs text-muted-foreground mt-2">
-          목표: {target}%
-        </p>
-      </CardContent>
-    </Card>
+    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow duration-200">
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center w-12 h-12 bg-purple-50 rounded-lg">
+            <Icon className="h-6 w-6 text-purple-600" />
+          </div>
+          <div>
+            <h3 className="text-gray-900 font-semibold">{title}</h3>
+            <p className="text-gray-500 text-sm">{description}</p>
+          </div>
+        </div>
+        <div className="text-right">
+          <div className="text-2xl font-bold text-gray-900">{value}%</div>
+          <div className="text-sm text-gray-500">목표: {target}%</div>
+        </div>
+      </div>
+      
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+          <span className="text-gray-600">진행률</span>
+          <span className="text-gray-900 font-medium">{percentage.toFixed(1)}%</span>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-3">
+          <div 
+            className="bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full transition-all duration-500 ease-out" 
+            style={{ width: `${Math.min(percentage, 100)}%` }}
+          />
+        </div>
+      </div>
+    </div>
   )
 } 

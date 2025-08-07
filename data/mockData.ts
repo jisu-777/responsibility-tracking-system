@@ -345,10 +345,10 @@ export const mockExecutiveResponsibilityData: ExecutiveResponsibilityData[] = [
     status: "진행중"
   },
 
-  // 컴플라이언스본부장 (한컴플라이언스) - 2개 책무
+  // 컴플라이언스본부장 (한컴플) - 2개 책무
   {
     id: 11,
-    name: "한컴플라이언스",
+    name: "한컴플",
     position: "컴플라이언스본부장",
     email: "compliance.director@company.com",
     executiveRegistrationDate: "2021-03-01",
@@ -367,7 +367,7 @@ export const mockExecutiveResponsibilityData: ExecutiveResponsibilityData[] = [
   },
   {
     id: 12,
-    name: "한컴플라이언스",
+    name: "한컴플",
     position: "컴플라이언스본부장",
     email: "compliance.director@company.com",
     executiveRegistrationDate: "2021-03-01",

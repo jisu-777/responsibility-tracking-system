@@ -87,7 +87,7 @@ export default function ResponsibilityManagementPage() {
       width: "w-40",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.category}
         </div>
       ),
@@ -98,7 +98,7 @@ export default function ResponsibilityManagementPage() {
       width: "w-32",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.code}
         </div>
       ),
@@ -109,7 +109,7 @@ export default function ResponsibilityManagementPage() {
       width: "min-w-[500px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black whitespace-normal break-words" title={item.responsibility}>
+        <div className="text-sm text-black whitespace-normal break-words" title={item.responsibility}>
           {item.responsibility}
         </div>
       ),
@@ -120,7 +120,7 @@ export default function ResponsibilityManagementPage() {
       width: "min-w-32",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black">
+        <div className="text-sm text-black">
           {item.detailCode}
         </div>
       ),
@@ -131,7 +131,7 @@ export default function ResponsibilityManagementPage() {
       width: "min-w-[400px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-base text-black whitespace-normal break-words" title={item.detailContent}>
+        <div className="text-sm text-black whitespace-normal break-words" title={item.detailContent}>
           {item.detailContent}
         </div>
       ),
