@@ -12,6 +12,7 @@ export interface ResponsibilityData {
   responsibility: string
   detailCode: string
   detailContent: string
+}
 
 // 임원 관리조치 데이터 타입
 export interface ExecutiveResponsibilityData {

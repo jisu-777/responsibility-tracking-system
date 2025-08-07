@@ -21,6 +21,8 @@ export default function AddExecutiveResponsibilityModal({ isOpen, onClose, onAdd
   const [formData, setFormData] = useState<ExecutiveResponsibilityFormData>({
     name: "",
     position: "",
+    email: "",
+    executiveRegistrationDate: "",
     organization: "",
     category: "",
     code: "",
@@ -152,6 +154,8 @@ export default function AddExecutiveResponsibilityModal({ isOpen, onClose, onAdd
     setFormData({
       name: "",
       position: "",
+      email: "",
+      executiveRegistrationDate: "",
       organization: "",
       category: "",
       code: "",

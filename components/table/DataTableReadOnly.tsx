@@ -194,6 +194,7 @@ export function DataTableReadOnly<T extends { id: number }>({
             }}
             handleSelectItem={actions.data.handleSelectItem}
             handleSelectAllItems={actions.data.handleSelectAllItems}
+            handleEdit={() => {}} // ReadOnly이므로 빈 함수
             isAllCurrentPageSelected={safeState.isAllCurrentPageSelected}
             isSomeCurrentPageSelected={safeState.isSomeCurrentPageSelected}
             columns={tableColumns}

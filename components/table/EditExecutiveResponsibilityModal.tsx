@@ -27,6 +27,8 @@ export default function EditExecutiveResponsibilityModal({
   const [formData, setFormData] = useState<ExecutiveResponsibilityFormData>({
     name: "",
     position: "",
+    email: "",
+    executiveRegistrationDate: "",
     organization: "",
     category: "",
     code: "",
@@ -64,6 +66,8 @@ export default function EditExecutiveResponsibilityModal({
       setFormData({
         name: editingItem.name,
         position: editingItem.position,
+        email: editingItem.email,
+        executiveRegistrationDate: editingItem.executiveRegistrationDate,
         organization: editingItem.organization,
         category: editingItem.category,
         code: editingItem.code,
@@ -197,6 +201,8 @@ export default function EditExecutiveResponsibilityModal({
     setFormData({
       name: "",
       position: "",
+      email: "",
+      executiveRegistrationDate: "",
       organization: "",
       category: "",
       code: "",

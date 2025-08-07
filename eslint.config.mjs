@@ -1,7 +1,6 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
-import someConfig from "some-other-config-you-use";
 import eslintConfigPrettier from "eslint-config-prettier";
 import js from "@eslint/js";
 import globals from "globals";
@@ -32,6 +31,6 @@ const eslintConfig = [
 ];
 
 export default [
-  someConfig,
+  js.configs.recommended,
   eslintConfigPrettier,
 ];
