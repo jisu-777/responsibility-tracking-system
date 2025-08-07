@@ -43,21 +43,21 @@ function DownloadButton({ type, onDownload, disabled = false, className = "" }: 
     switch (type) {
       case "excel":
         return {
-          icon: <FileSpreadsheet className="w-4 h-4" />,
-          text: "엑셀 다운로드",
-          bgColor: "bg-green-600 hover:bg-green-700"
+          icon: <img src="/images/logo.png" alt="Excel" className="w-7 h-7" />,
+          text: "다운로드",
+          bgColor: "text-green-600 hover:text-green-700"
         }
       case "pdf":
         return {
-          icon: <FileTextIcon className="w-4 h-4" />,
-          text: "PDF 다운로드",
-          bgColor: "bg-red-600 hover:bg-red-700"
+          icon: <img src="/images/pdf.png" alt="PDF" className="w-7 h-7" />,
+          text: "다운로드",
+          bgColor: "text-red-600 hover:text-red-700"
         }
       default:
         return {
-          icon: <Download className="w-4 h-4" />,
+          icon: <Download className="w-7 h-7" />,
           text: "다운로드",
-          bgColor: "bg-blue-600 hover:bg-blue-700"
+          bgColor: "text-blue-600 hover:text-blue-700"
         }
     }
   }
@@ -65,42 +65,57 @@ function DownloadButton({ type, onDownload, disabled = false, className = "" }: 
   const config = getDownloadConfig(type)
 
   return (
-    <Button
-      onClick={onDownload}
-      disabled={disabled}
-      className={`${config.bgColor} text-white ${className}`}
-    >
-      {config.icon}
-      <span className="ml-2">{config.text}</span>
-    </Button>
+    <div>
+      <div 
+        onClick={disabled ? undefined : onDownload}
+        className={`w-12 h-12 bg-gradient-to-r shadow-sm rounded-[40px] shadow-[0px_10px_15px_rgba(0,0,0,0.041)] flex items-center justify-center  cursor-pointer transition-all duration-200 hover:opacity-100 hover:-mt-2 ${
+          disabled ? 'opacity-50 cursor-not-allowed' : ''
+        } ${config.bgColor}`}
+      >
+        {config.icon}
+      </div>
+      <div className="text-xs text-brandGrey-900 font-medium mt-1 text-center">
+        {config.text}
+      </div>
+    </div>
   )
 }
 
 // 템플릿 버튼 컴포넌트
 function TemplateButton({ onTemplate, disabled = false, className = "" }: TemplateButtonProps) {
   return (
-    <Button
-      onClick={onTemplate}
-      disabled={disabled}
-      className={`bg-blue-600 hover:bg-blue-700 text-white ${className}`}
-    >
-      <FileText className="w-4 h-4" />
-      <span className="ml-2">템플릿</span>
-    </Button>
+    <div>
+      <div 
+        onClick={disabled ? undefined : onTemplate}
+        className={`w-12 h-12 bg-gradient-to-r shadow-sm rounded-[40px] shadow-[0px_10px_15px_rgba(0,0,0,0.041)] flex items-center justify-center  cursor-pointer transition-all duration-200 hover:opacity-100 hover:-mt-2 text-brandGrey-900 hover:text-brandGrey-700 ${
+          disabled ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
+      >
+        <img src="/images/web-design.png" alt="템플릿" className="w-7 h-7" />
+      </div>
+      <div className="text-xs text-brandGrey-900 font-medium mt-1 text-center">
+        템플릿
+      </div>
+    </div>
   )
 }
 
 // 미리보기 버튼 컴포넌트
 function PreviewButton({ onPreview, disabled = false, className = "" }: PreviewButtonProps) {
   return (
-    <Button
-      onClick={onPreview}
-      disabled={disabled}
-      className={`bg-gray-600 hover:bg-gray-700 text-white ${className}`}
-    >
-      <Eye className="w-4 h-4" />
-      <span className="ml-2">미리보기</span>
-    </Button>
+    <div>
+      <div 
+        onClick={disabled ? undefined : onPreview}
+        className={`w-12 h-12 bg-gradient-to-r shadow-sm rounded-[40px] shadow-[0px_10px_15px_rgba(0,0,0,0.041)] flex items-center justify-center  cursor-pointer transition-all duration-200 hover:opacity-100 hover:-mt-2 text-gray-600 hover:text-gray-700 ${
+          disabled ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
+      >
+        <img src="/images/search (3).png" alt="미리보기" className="w-7 h-7" />
+      </div>
+      <div className="text-xs text-brandGrey-900 font-medium mt-1 text-center">
+        미리보기
+      </div>
+    </div>
   )
 }
 
@@ -112,7 +127,7 @@ export default function ActionButtonGroup({
   className = ""
 }: ActionButtonGroupProps) {
   return (
-    <div className={`flex gap-2 ${className}`}>
+    <div className={`flex gap-2 -mt-2 ${className}`}>
       {/* 다운로드 버튼 */}
       <DownloadButton {...downloadProps} />
       

@@ -149,7 +149,7 @@ export function DataTable<T extends { id: number }>({
         renderCell: (row) => (
           <div
             onClick={() => onEdit(row.id)}
-            className="h-8 flex items-center justify-center text-sm cursor-pointer whitespace-nowrap "
+            className=" flex items-center justify-center text-sm cursor-pointer whitespace-nowrap text-blue-600 underline hover:text-blue-800"
           >
             수정
           </div>
@@ -207,9 +207,9 @@ export function DataTable<T extends { id: number }>({
      
 
           <div className="">
-            <div className=" flex gap-2 mb-4 ">
-              <div className="relative flex-1">
-                <Search className="absolute right-5 top-1/2 transform -translate-y-1/2 text-brand-500/50  w-6 h-6" />
+            <div className=" flex gap-2 mb-4 px-4">
+              <div className="relative flex-1 pr-5">
+                <Search className="absolute right-10 top-5 transform -translate-y-1/2 text-brand-500/50  w-6 h-6" />
                 <input
                   type="text"
                   placeholder="검색어를 입력하세요"
@@ -218,19 +218,25 @@ export function DataTable<T extends { id: number }>({
                   className="w-full pl-4 pr-10 py-2 border-1 border-brand-500/50 rounded-full focus:border-brand-500/80 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:ring-offset-2 min-h-[40px] bg-transparent transition-all duration-200"
                 />
               </div>
-              <div 
-                onClick={actions.resetAll}
-                className="flex items-center gap-2 px-3 py-2 border border-brandGrey-300 rounded-full cursor-pointer hover:bg-gray-50 transition-colors"
-              >
-                <img src="/images/undo (1).png" alt="지우개" className="w-6 h-6" />
-                필터 초기화
+              <div className="flex gap-3 -mt-2">
+                <div>
+                  <div 
+                    onClick={actions.resetAll}
+                    className="w-12 h-12 bg-gradient-to-r shadow-sm rounded-[40px] shadow-[0px_10px_15px_rgba(0,0,0,0.041)] flex items-center justify-center opacity-80 cursor-pointer transition-all duration-200 hover:opacity-100 hover:-mt-2"
+                  >
+                    <img src="/images/undo (1).png" alt="지우개" className="w-7 h-7" />
+                  </div>
+                  <div className="text-xs text-brandGrey-900 font-medium mt-1 text-center">
+                    초기화
+                  </div>
+                </div>
+                <TableActions
+                  selectedItems={safeState.data.selectedItems}
+                  onDeleteSelected={handleDelete}
+                 
+                  onAddNew={handleAdd}
+                />
               </div>
-              <TableActions
-                selectedItems={safeState.data.selectedItems}
-                onDeleteSelected={handleDelete}
-               
-                onAddNew={handleAdd}
-              />
 
             </div>
 

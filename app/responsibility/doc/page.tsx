@@ -4,6 +4,9 @@ import React, { useState, useMemo } from 'react'
 import { executiveList } from '@/data/executiveData'
 import ExecutiveResponsibilityPage from '@/components/executive_doc/excutive_res'
 import { Breadcrumb } from "@/components/ui/Breadcrumb"
+import ActionButtonGroup from "@/components/ui/ActionButtonGroup"
+import { Label } from "@/components/ui/label"
+import { DataTableSelect } from "@/components/ui/DataTableSelect"
 
 // 팝업 컴포넌트
 interface PopupProps {
@@ -74,7 +77,7 @@ interface ExecutiveCardProps {
 
 const ExecutiveCard: React.FC<ExecutiveCardProps> = ({ executive }) => {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-lg overflow-hidden">
+    <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
       {/* 헤더 섹션 */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6">
         <div className="flex items-center justify-between">
@@ -193,12 +196,36 @@ export default function ResponsibilityDocPage() {
   const [selectedExecutive, setSelectedExecutive] = useState<number>(0)
   const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false)
 
+  // 임원 옵션 생성
+  const executiveOptions = executiveList.map((executive, index) => ({
+    id: index.toString(),
+    name: executive.officer.name,
+    position: executive.officer.position
+  }))
+
   const handleOpenPopup = () => {
     setIsPopupOpen(true)
   }
 
   const handleClosePopup = () => {
     setIsPopupOpen(false)
+  }
+
+  // 다운로드 기능
+  const handleDownload = () => {
+    console.log("책무기술서 다운로드")
+    alert("책무기술서가 다운로드되었습니다.")
+  }
+
+  // 템플릿 기능
+  const handleTemplate = () => {
+    console.log("템플릿 다운로드")
+    alert("템플릿이 다운로드되었습니다.")
+  }
+
+  // 미리보기 기능
+  const handlePreview = () => {
+    setIsPopupOpen(true)
   }
 
   return (
@@ -213,48 +240,43 @@ export default function ResponsibilityDocPage() {
         />
         <div className="mb-8 flex justify-between items-center border-b border-b-brandGrey-200">
           <h1 className="text-3xl font-bold text-gray-900 mb-8">임원별 책무기술서 관리</h1>
+          <div className="flex items-center gap-4">
+            <Label htmlFor="executive" className="text-semibold text-base font-medium">
+              임원 선택
+            </Label>
+            <div className="w-64 pr-4 mr-4">
+              <DataTableSelect
+                placeholder="임원을 선택하세요"
+                value={selectedExecutive.toString()}
+                onChange={(value) => setSelectedExecutive(Number(value))}
+                options={executiveOptions.map((executive) => ({
+                  value: executive.id,
+                  label: `${executive.name} ${executive.position ? `(${executive.position})` : ''}`
+                }))}
+              />
+            </div>
+            <ActionButtonGroup
+              downloadProps={{
+                type: "excel",
+                onDownload: handleDownload
+              }}
+              templateProps={{
+                onTemplate: handleTemplate
+              }}
+              previewProps={{
+                onPreview: handlePreview
+              }}
+            />
+          </div>
         </div>
         
-        <div className="max-w-7xl mx-auto p-6">
-          {/* 헤더 */}
-          <div className="mb-8">
-            <p className="text-gray-600 mt-2">임원들의 책무 정보를 확인하고 관리할 수 있습니다.</p>
+        <div className="max-w-7xl mx-auto">
+          <div className="">
+            {/* 임원 정보 카드 */}
+            <div className="mb-8 px-4">
+              <ExecutiveCard executive={executiveList[selectedExecutive]} />
+            </div>
           </div>
-
-        {/* 필터 섹션 */}
-        <div className="mb-6">
-          <div className="flex items-center gap-4">
-            <label className="text-sm font-medium text-gray-700">임원 선택:</label>
-            <select
-              value={selectedExecutive}
-              onChange={(e) => setSelectedExecutive(Number(e.target.value))}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white shadow-sm"
-            >
-              {executiveList.map((executive, index) => (
-                <option key={index} value={index}>
-                  {executive.officer.name} ({executive.officer.position})
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* 임원 정보 카드 */}
-        <div className="mb-8">
-          <ExecutiveCard executive={executiveList[selectedExecutive]} />
-        </div>
-
-        {/* 상세 보기 버튼 */}
-        <div className="text-center">
-          <button 
-            onClick={handleOpenPopup}
-            className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-          >
-            상세 책무기술서 보기
-          </button>
-          <p className="text-sm text-gray-500 mt-3">
-            선택한 임원의 상세한 책무기술서를 확인할 수 있습니다.
-          </p>
         </div>
 
         {/* 팝업 */}
@@ -266,7 +288,6 @@ export default function ResponsibilityDocPage() {
           <ExecutiveResponsibilityPage selectedExecutiveIndex={selectedExecutive} />
         </Popup>
       </div>
-    </div>
     </>
   )
 }

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { DataTableSelect } from "@/components/ui/DataTableSelect"
 import { ManagementCheckData } from "@/data/magagement/managementCheckData"
 
 interface ExecutiveFilterProps {
@@ -68,50 +68,48 @@ export function ExecutiveFilter({ data, onFilterChange }: ExecutiveFilterProps) 
   }
 
   return (
-    <div className="bg-white rounded-lg shadow p-4 mb-6">
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-700">그룹:</span>
-          <Select value={selectedGroup} onValueChange={handleGroupChange}>
-            <SelectTrigger className="w-48">
-              <SelectValue placeholder="전체 그룹" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">전체 그룹</SelectItem>
-              {availableGroups.map(group => (
-                <SelectItem key={group} value={group}>
-                  {group}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-700">담당임원:</span>
-          <Select value={selectedExecutive} onValueChange={handleExecutiveChange}>
-            <SelectTrigger className="w-48">
-              <SelectValue placeholder="전체 담당임원" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">전체 담당임원</SelectItem>
-              {availableExecutives.map(executive => (
-                <SelectItem key={executive} value={executive}>
-                  {executive}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        <Button 
-          variant="outline" 
-          onClick={resetFilters}
-          className="ml-auto"
-        >
-          초기화
-        </Button>
+    <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-medium text-gray-700">그룹:</span>
+        <DataTableSelect
+          placeholder="전체 그룹"
+          value={selectedGroup}
+          onChange={handleGroupChange}
+          options={[
+            { value: "all", label: "전체 그룹" },
+            ...availableGroups.map(group => ({
+              value: group,
+              label: group
+            }))
+          ]}
+          className="w-48"
+        />
       </div>
+
+      <div className="flex items-center gap-2">
+        <span className="text-sm font-medium text-gray-700">담당임원:</span>
+        <DataTableSelect
+          placeholder="전체 담당임원"
+          value={selectedExecutive}
+          onChange={handleExecutiveChange}
+          options={[
+            { value: "all", label: "전체 담당임원" },
+            ...availableExecutives.map(executive => ({
+              value: executive,
+              label: executive
+            }))
+          ]}
+          className="w-48"
+        />
+      </div>
+
+      <Button 
+        variant="outline" 
+        onClick={resetFilters}
+        className="ml-auto border-brand-500/50 hover:border-brand-500/80 hover:bg-brand-500/10"
+      >
+        초기화
+      </Button>
     </div>
   )
 } 

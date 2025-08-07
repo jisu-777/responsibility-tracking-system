@@ -169,29 +169,38 @@ export default function ExecutiveRegisterPage() {
         ]}
         className="mb-8"
       />
-      <div className="mb-8 flex justify-between items-center border-b border-b-brandGrey-200">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">임원 신규등록</h1>
+              <div className="mb-8 flex justify-between items-center border-b border-b-brandGrey-200">
+          <h1 className="text-3xl font-bold text-gray-900 mb-8">임원 신규등록</h1>
 
-        <div className=" flex justify-end gap-2">
-          <div 
-            className="px-4 py-2 rounded-full cursor-pointer transition-all duration-200 flex items-center gap-2 border border-brandGrey-500/50"
-          >
-            <img src="/images/star.png" alt="별표" className="w-6 h-6" />
-            임시저장
-          </div>
-          <div 
-            onClick={handleRegister}
-            className={`px-4 py-2 rounded-full cursor-pointer transition-all duration-200 flex items-center gap-2 ${
-              !basicInfo.name || !basicInfo.position || selectedResponsibilities.length === 0
-                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                : "bg-gray-900 text-white hover:bg-brandGrey-900"
-            }`}
-          >
-            <CheckCircle className="w-4 h-4" />
-            등록하기
+          <div className="flex gap-3 mb-4">
+            <div>
+              <div 
+                className="w-12 h-12 bg-gradient-to-r shadow-sm rounded-[40px] shadow-[0px_10px_15px_rgba(0,0,0,0.041)] flex items-center justify-center opacity-80 cursor-pointer transition-all duration-200 hover:opacity-100 hover:-mt-2"
+              >
+                <img src="/images/star.png" alt="별표" className="w-7 h-7" />
+              </div>
+              <div className="text-xs text-brandGrey-900 font-medium mt-1 text-center">
+                임시저장
+              </div>
+            </div>
+            
+            <div>
+              <div 
+                onClick={!basicInfo.name || !basicInfo.position || selectedResponsibilities.length === 0 ? undefined : handleRegister}
+                className={`w-12 h-12 bg-gradient-to-r shadow-sm rounded-[40px] shadow-[0px_10px_15px_rgba(0,0,0,0.041)] flex items-center justify-center opacity-80 cursor-pointer transition-all duration-200 hover:opacity-100 hover:-mt-2 ${
+                  !basicInfo.name || !basicInfo.position || selectedResponsibilities.length === 0
+                    ? 'text-brandGrey-300 cursor-not-allowed'
+                    : 'text-brandGrey-900 hover:text-brand-500'
+                }`}
+              >
+                <CheckCircle className="w-7 h-7" />
+              </div>
+              <div className="text-xs text-brandGrey-900 font-medium mt-1 text-center">
+                등록하기
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       {/* 기본 정보 입력 */}
       <div className="mb-8">
         <BasicInfoCard

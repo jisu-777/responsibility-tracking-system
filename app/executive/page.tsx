@@ -14,6 +14,7 @@ import {
 import { mockExecutiveResponsibilityData } from "@/data/mockData"
 import { useTable } from "@/hooks/table/useTable"
 import { Breadcrumb } from "@/components/ui/Breadcrumb"
+import { ExecutiveStatusBadge } from "@/components/ui/ExecutiveStatusBadge"
 
 export default function ExecutiveResponsibilityPage() {
   // useTable 훅 사용
@@ -162,7 +163,7 @@ export default function ExecutiveResponsibilityPage() {
     {
       key: "code",
       title: "책무코드",
-      width: "min-w-[140px] w-[140px]",
+      width: "min-w-[180px] w-[180px]",
       filterable: true,
       renderCell: (item) => (
         <div className="text-sm text-black">
@@ -188,7 +189,7 @@ export default function ExecutiveResponsibilityPage() {
     {
       key: "detailCode",
       title: "책무세부코드",
-      width: "min-w-[150px] w-[150px]",
+      width: "min-w-[180px] w-[180px]",
       filterable: true,
       renderCell: (item) => (
         <div className="text-sm text-black">
@@ -261,8 +262,8 @@ export default function ExecutiveResponsibilityPage() {
       width: "min-w-[120px] w-[120px]",
       filterable: true,
       renderCell: (item) => (
-        <div className="text-sm text-black">
-          {item.status}
+        <div className="text-sm">
+          <ExecutiveStatusBadge status={item.status} />
         </div>
       ),
     },

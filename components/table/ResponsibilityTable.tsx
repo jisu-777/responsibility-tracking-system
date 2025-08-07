@@ -66,7 +66,7 @@ const ResponsibilityTable = React.memo(function ResponsibilityTable<T = any>({
                  key={col.key}
                                    className={[
                     col.widthClass,
-                    "z-20 border-r border-b border-b-brandGrey-200 bg-brandGrey-50 px-2 py-0.5 text-left align-middle font-semibold text-sm "
+                    "z-20 border-r border-b border-b-brandGrey-200 bg-brandGrey-50 px-4 py-1 text-left align-middle font-semibold text-sm "
                   ].join(" ")}
                 >
                 {col.header}
@@ -79,7 +79,7 @@ const ResponsibilityTable = React.memo(function ResponsibilityTable<T = any>({
             paginatedData.map((item, index) => (
               <tr
                 key={(item as any).id || index}
-                className={`align-top border-b transition-colors hover:bg-brandGrey-100 ${
+                className={`align-top border-b transition-colors ${
                   selectedItems.includes((item as any).id) ? "bg-brandGrey-50" : ""
                 }`}
               >
@@ -88,7 +88,7 @@ const ResponsibilityTable = React.memo(function ResponsibilityTable<T = any>({
                     key={col.key}
                     className={[
                       col.widthClass,
-                      "z-10 border-r px-2 py-0.5 align-middle text-sm",
+                      "z-10 border-r px-4 py-1 align-middle text-sm",
                     ].join(" ")}
                   >
                     {col.renderCell?.(item, index)}

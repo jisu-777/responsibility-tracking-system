@@ -9,32 +9,59 @@ export default function ScrollToTop() {
   // 스크롤 위치 감지
   useEffect(() => {
     const toggleVisibility = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      setIsVisible(scrollTop > 300)
+      // window 스크롤과 메인 콘텐츠 스크롤 모두 확인
+      const windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      const mainElement = document.querySelector('main')
+      const mainScrollTop = mainElement ? mainElement.scrollTop : 0
+      
+      // 둘 중 하나라도 300px 이상 스크롤되면 버튼 표시
+      setIsVisible(windowScrollTop > 300 || mainScrollTop > 300)
     }
 
     // 초기 상태 확인
     toggleVisibility()
 
-    // 스크롤 이벤트 리스너 추가 (window만 사용)
+    // window 스크롤 이벤트 리스너
     window.addEventListener("scroll", toggleVisibility, { passive: true })
+    
+    // 메인 콘텐츠 스크롤 이벤트 리스너
+    const mainElement = document.querySelector('main')
+    if (mainElement) {
+      mainElement.addEventListener("scroll", toggleVisibility, { passive: true })
+    }
     
     return () => {
       window.removeEventListener("scroll", toggleVisibility)
+      if (mainElement) {
+        mainElement.removeEventListener("scroll", toggleVisibility)
+      }
     }
   }, [])
 
   // 맨 위로 스크롤
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    })
+    // 메인 콘텐츠가 스크롤 가능한지 확인
+    const mainElement = document.querySelector('main')
+    if (mainElement && mainElement.scrollTop > 0) {
+      // 메인 콘텐츠를 맨 위로 스크롤
+      mainElement.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
+    } else {
+      // window를 맨 위로 스크롤
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
+    }
     
     // 스크롤 완료 후 상태 업데이트를 위한 타이머
     setTimeout(() => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      setIsVisible(scrollTop > 300)
+      const windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      const mainElement = document.querySelector('main')
+      const mainScrollTop = mainElement ? mainElement.scrollTop : 0
+      setIsVisible(windowScrollTop > 300 || mainScrollTop > 300)
     }, 100)
   }
 
@@ -67,24 +94,24 @@ export default function ScrollToTop() {
           }}
           aria-label="맨 위로 이동"
         >
-                     <svg 
-             style={{
-               width: '20px',
-               height: '20px',
-               transition: 'all 0.3s',
-               transform: isHovered ? 'translateY(-200%)' : 'translateY(0)'
-             }}
-             viewBox="0 0 24 24"
-             fill="none"
-             stroke="white"
-             strokeWidth="2"
-             strokeLinecap="round"
-             strokeLinejoin="round"
-           >
-             {/* 귀여운 화살표 아이콘 */}
-             <path d="M12 19V5" stroke="white" strokeWidth="2"/>
-             <path d="M5 12L12 5L19 12" stroke="white" strokeWidth="2"/>
-           </svg>
+          <svg 
+            style={{
+              width: '20px',
+              height: '20px',
+              transition: 'all 0.3s',
+              transform: isHovered ? 'translateY(-200%)' : 'translateY(0)'
+            }}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {/* 귀여운 화살표 아이콘 */}
+            <path d="M12 19V5" stroke="white" strokeWidth="2"/>
+            <path d="M5 12L12 5L19 12" stroke="white" strokeWidth="2"/>
+          </svg>
           <span style={{
             position: 'absolute',
             bottom: isHovered ? 'auto' : '-20px',

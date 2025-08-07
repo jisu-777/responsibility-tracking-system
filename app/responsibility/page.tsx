@@ -78,10 +78,10 @@ export default function ResponsibilityListPage() {
         <div className="mb-8 flex justify-between items-center border-b border-b-brandGrey-200">
           <h1 className="text-3xl font-bold text-gray-900 mb-8">책무체계도</h1>
           <div className="flex items-center gap-4">
-            <Label htmlFor="executive" className=" text-base font-medium">
+            <Label htmlFor="executive" className="text-semibold text-base font-medium">
               임원 선택
             </Label>
-            <div className="w-64">
+            <div className="w-64 pr-4 mr-4">
               <DataTableSelect
                 placeholder="임원을 선택하세요"
                 value={selectedExecutive}
@@ -92,15 +92,6 @@ export default function ResponsibilityListPage() {
                 }))}
               />
             </div>
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto p-6">
-          
-
-       
-        <div className="mb-6">
-          <div className="max-w-md">
             <ActionButtonGroup
               downloadProps={{
                 type: "pdf",
@@ -115,16 +106,19 @@ export default function ResponsibilityListPage() {
             />
           </div>
         </div>
-
-        {/* 체계도 */}
-        <div className="bg-white rounded-lg border shadow-sm">
-          <ResponsibilityChart 
-            data={mockExecutiveResponsibilityData} 
-            selectedExecutive={selectedExecutive}
-            onResponsibilityClick={handleResponsibilityClick}
-          />
+        
+        <div className="max-w-7xl mx-auto">
+          <div className="">
+            {/* 체계도 */}
+            <div className="bg-white rounded-lg border shadow-sm">
+              <ResponsibilityChart 
+                data={mockExecutiveResponsibilityData} 
+                selectedExecutive={selectedExecutive}
+                onResponsibilityClick={handleResponsibilityClick}
+              />
+            </div>
+          </div>
         </div>
-      </div>
 
       {/* 사이드바 모달 */}
       <ResponsibilitySidebarModal
