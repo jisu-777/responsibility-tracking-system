@@ -227,12 +227,12 @@ export default function ManagementPage() {
       <div className="max-w-7xl mx-auto pt-4">
         <Breadcrumb 
           items={[
-            { label: "베이스 현황" }
+            { label: "관리조치 현황" }
           ]}
           className="mb-8"
         />
         <div className="mb-8 flex justify-between items-center border-b border-b-brandGrey-200">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">베이스 현황</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-8">관리조치 현황</h1>
         </div>
         
         <DataTable

@@ -18,8 +18,8 @@ export default function page() {
       </div>
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center">
         <DemoD />
-        <DemoE />
-        <DemoF />
+        <DemoE numerator={75} denominator={100} />
+        <DemoF numerator={60} denominator={100} />
       </div>
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center">
         <DemoG />

@@ -20,14 +20,14 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children, title }) => {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-white/20 backdrop-blur-[20px] flex items-center justify-center z-50 p-4">
+      <div className="bg-white w-full max-w-7xl max-h-[90vh] overflow-hidden rounded-lg border border-brand-400">
         {/* 헤더 */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-          <h2 className="text-xl font-bold">{title}</h2>
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <h2 className="text-xl font-bold text-gray-900">{title}</h2>
           <button
             onClick={onClose}
-            className="text-white hover:text-gray-200 transition-colors p-2"
+            className="text-gray-500 hover:text-gray-700 transition-colors p-2 rounded-full hover:bg-gray-100"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -77,13 +77,13 @@ interface ExecutiveCardProps {
 
 const ExecutiveCard: React.FC<ExecutiveCardProps> = ({ executive }) => {
   return (
-    <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
+    <div className="bg-white overflow-hidden">
       {/* 헤더 섹션 */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6">
+      <div className="text-white p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-2xl font-bold">{executive.officer.name}</h3>
-            <p className="text-blue-100 mt-1">{executive.officer.position} • {executive.officer.rank}</p>
+            <h3 className="text-2xl font-bold text-gray-900">{executive.officer.name}</h3>
+            <p className="text-gray-700 mt-1">{executive.officer.position} • {executive.officer.rank}</p>
           </div>
           <div className="text-right">
             <div className="text-sm text-blue-100">임명일</div>
@@ -270,10 +270,10 @@ export default function ResponsibilityDocPage() {
           </div>
         </div>
         
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto pb-20">
           <div className="">
             {/* 임원 정보 카드 */}
-            <div className="mb-8 px-4">
+            <div className="mb-8">
               <ExecutiveCard executive={executiveList[selectedExecutive]} />
             </div>
           </div>

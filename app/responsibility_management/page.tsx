@@ -84,7 +84,7 @@ export default function ResponsibilityManagementPage() {
     {
       key: "category",
       title: "책무구분",
-      width: "w-40",
+      width: "min-w-[200px] w-[200px]",
       filterable: true,
       renderCell: (item) => (
         <div className="text-sm text-black">
@@ -95,7 +95,7 @@ export default function ResponsibilityManagementPage() {
     {
       key: "code",
       title: "책무코드",
-      width: "w-32",
+      width: "min-w-[200px] w-[200px]",
       filterable: true,
       renderCell: (item) => (
         <div className="text-sm text-black">
@@ -117,7 +117,7 @@ export default function ResponsibilityManagementPage() {
     {
       key: "detailCode",
       title: "책무세부코드",
-      width: "min-w-32",
+      width: "min-w-[230px] w-[230px]",
       filterable: true,
       renderCell: (item) => (
         <div className="text-sm text-black">

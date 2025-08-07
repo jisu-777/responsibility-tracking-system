@@ -11,8 +11,8 @@ export default function MainHeader() {
         <Image
           src="/images/logo_v2.png"
           alt="Logo"
-          width={30}
-          height={26}
+          width={50}
+          height={44}
         />
         <h1 className="text-xl font-semibold text-white">책무관리시스템</h1>
       </div>

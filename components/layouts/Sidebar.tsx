@@ -21,11 +21,11 @@ export default function ImprovedSidebar() {
   const navItems: NavItem[] = [
     {
       name: "대시보드",
-      path: "/",
+      path: "/dashboard",
       icon: LayoutDashboard,
       subItems: [
         { name: "임원대시보드", path: "/dashboard/executive" },
-        { name: "전사대시보드", path: "/dashboard/company" },
+        { name: "전사대시보드", path: "/dashboard" },
       ]
     },
     {
@@ -62,8 +62,8 @@ export default function ImprovedSidebar() {
       path: "/responsibility_management",
       icon: Settings,
       subItems: [
-        { name: "책무 현황", path: "/responsibility_management/status" },
-        { name: "책무 설정", path: "/responsibility_management/settings" },
+        { name: "책무 현황", path: "/responsibility_management" },
+       
       ]
     },
   ]
@@ -95,7 +95,7 @@ export default function ImprovedSidebar() {
 
   return (
     <div className={cn(
-      "sticky top-0 h-[calc(100vh-48px)] bg-white flex flex-col transition-all duration-300 ease-in-out z-10 relative border-r border-slate-200/60 shadow-sm flex-shrink-0",
+      "sticky top-0 h-[calc(100vh-48px)] bg-white flex flex-col transition-all duration-300 ease-in-out z-10 relative flex-shrink-0 shadow-lg",
       isCollapsed ? 'w-16' : 'w-72'
     )}>
       
@@ -128,10 +128,10 @@ export default function ImprovedSidebar() {
                     <button
                       onClick={() => toggleExpanded(item.name)}
                       className={cn(
-                        "w-full flex items-center justify-between p-3 rounded-xl text-left transition-all duration-200 group",
+                        "w-full flex items-center justify-between p-2 rounded-xl text-left transition-all duration-200 group",
                         isActive
-                          ? 'bg-gradient-to-r from-blue-50 to-blue-50/50 text-blue-700 shadow-sm border border-blue-100'
-                          : 'hover:bg-slate-50 text-slate-700 hover:text-slate-900'
+                          ? 'text-brand-500'
+                          : 'text-slate-700 hover:text-brand-500 hover:bg-gray-100'
                       )}
                       title={isCollapsed ? item.name : undefined}
                     >
@@ -143,15 +143,15 @@ export default function ImprovedSidebar() {
                           "flex items-center justify-center rounded-lg transition-all duration-200",
                           isCollapsed ? "w-8 h-8" : "w-7 h-7",
                           isActive 
-                            ? "bg-blue-100 text-blue-600" 
-                            : "bg-slate-100 text-slate-600 group-hover:bg-slate-200"
+                            ? "text-brand-500" 
+                            : "text-slate-600 group-hover:text-brand-500"
                         )}>
                           {React.createElement(item.icon, { 
-                            className: isCollapsed ? "w-4 h-4" : "w-3.5 h-3.5" 
+                            className: isCollapsed ? "w-5 h-5" : "w-4 h-4" 
                           })}
                         </div>
                         {!isCollapsed && (
-                          <span className="font-medium text-sm whitespace-nowrap">
+                          <span className="text-base font-semibold whitespace-nowrap">
                             {item.name}
                           </span>
                         )}
@@ -174,17 +174,17 @@ export default function ImprovedSidebar() {
                             key={subItem.name}
                             onClick={() => handleNavClick(subItem.path)}
                             className={cn(
-                              "w-full text-left p-2.5 rounded-lg text-sm transition-all duration-200 relative",
+                              "w-full text-left p-1.5 rounded-lg text-sm transition-all duration-200 relative",
                               isCurrentPage(subItem.path)
-                                ? 'bg-blue-50 text-blue-700 font-medium border-l-2 border-blue-500 pl-4'
-                                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 border-l-2 border-transparent hover:border-slate-200 pl-4'
+                                ? 'text-brand-500 font-medium pl-4'
+                                : 'text-slate-600 hover:text-brand-500 hover:bg-gray-100 pl-4'
                             )}
                           >
                             <div className="flex items-center gap-2">
                               <div className={cn(
                                 "w-1.5 h-1.5 rounded-full transition-colors duration-200",
                                 isCurrentPage(subItem.path) 
-                                  ? "bg-blue-500" 
+                                  ? "bg-brand-500" 
                                   : "bg-slate-300"
                               )} />
                               <span className="whitespace-nowrap">{subItem.name}</span>
@@ -199,10 +199,10 @@ export default function ImprovedSidebar() {
                   <button
                     onClick={() => handleNavClick(item.path)}
                     className={cn(
-                      "w-full text-left p-3 rounded-xl transition-all duration-200 group",
+                      "w-full text-left p-2 rounded-xl transition-all duration-200 group",
                       isActive
-                        ? 'bg-gradient-to-r from-blue-50 to-blue-50/50 text-blue-700 shadow-sm border border-blue-100'
-                        : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+                        ? 'text-brand-500'
+                        : 'text-slate-700 hover:text-brand-500 hover:bg-gray-100'
                     )}
                     title={isCollapsed ? item.name : undefined}
                   >
@@ -214,15 +214,15 @@ export default function ImprovedSidebar() {
                         "flex items-center justify-center rounded-lg transition-all duration-200",
                         isCollapsed ? "w-8 h-8" : "w-7 h-7",
                         isActive 
-                          ? "bg-blue-100 text-blue-600" 
-                          : "bg-slate-100 text-slate-600 group-hover:bg-slate-200"
+                          ? "text-brand-500" 
+                          : "text-slate-600 group-hover:text-brand-500"
                       )}>
                         {React.createElement(item.icon, { 
-                          className: isCollapsed ? "w-4 h-4" : "w-3.5 h-3.5" 
+                          className: isCollapsed ? "w-5 h-5" : "w-4 h-4" 
                         })}
                       </div>
                       {!isCollapsed && (
-                        <span className="font-medium text-sm whitespace-nowrap">
+                        <span className="text-base font-semibold whitespace-nowrap">
                           {item.name}
                         </span>
                       )}

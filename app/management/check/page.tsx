@@ -140,7 +140,7 @@ export default function ManagementCheckPage() {
     {
       key: "personInCharge",
       title: "담당자",
-      width: "min-w-[80px] w-[80px]",
+      width: "min-w-[150px] w-[150px]",
       filterable: true,
       renderCell: (item) => (
         <div className="text-sm text-black">
@@ -151,7 +151,7 @@ export default function ManagementCheckPage() {
     {
       key: "checkStatus",
       title: "점검상태",
-      width: "min-w-[120px] w-[120px]",
+      width: "min-w-[156px] w-[156px]",
       filterable: true,
       renderCell: (item) => (
         <div className={`text-sm ${item.checkStatus.includes("기한경과") ? "text-red-600" : "text-black"}`}>
@@ -214,16 +214,13 @@ export default function ManagementCheckPage() {
           </div>
         </div>
         
-        <div className="max-w-7xl mx-auto">
-          <div className="space-y-8">
+        <div className="max-w-7xl mx-auto border-b border-b-brandGrey-200">
+          <div className="space-y-4">
             {/* 전자결제 업무 테이블 */}
-            <div className="bg-white rounded-lg shadow">
-              <div className="bg-blue-600 text-white px-6 py-4 rounded-t-lg">
+            <div className="bg-white rounded-lg">
+              <div className="px-0 pb-4">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-lg font-semibold">미완료 관리조치_전자결제 업무</h2>
-                  <div className="text-sm">
-                    미완료 / 점검대상 : {filteredData.length}/{mockManagementCheckData.length}
-                  </div>
+                  <h2 className="text-xl font-bold text-brandGrey-800">· 전자결재 업무</h2>
                 </div>
               </div>
               <DataTable
@@ -238,13 +235,10 @@ export default function ManagementCheckPage() {
             </div>
 
             {/* 수기결제 업무 테이블 */}
-            <div className="bg-white rounded-lg shadow">
-              <div className="bg-blue-600 text-white px-6 py-4 rounded-t-lg">
+            <div className="bg-white rounded-lg">
+              <div className="px-0 py-4">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-lg font-semibold">미완료 관리조치_수기결제 업무</h2>
-                  <div className="text-sm">
-                    미완료 / 점검대상 : {filteredData.length}/{mockManagementCheckData.length}
-                  </div>
+                  <h2 className="text-xl font-semibold text-gray-900">· 수기결재 업무</h2>
                 </div>
               </div>
               <DataTable
