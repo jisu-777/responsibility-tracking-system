@@ -6,7 +6,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', sans-serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -37,6 +37,34 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  
+  /* Brand Orange 색상 패밀리 */
+  --color-brand-50: #FFF5ED;
+  --color-brand-100: #FFE8D4;
+  --color-brand-200: #FFCDA8;
+  --color-brand-300: #FFAA72;
+  --color-brand-400: #FE7C39;
+  --color-brand-500: #FD5108;
+  
+  /* Brand Grey 색상 패밀리 */
+  --color-brandGrey-25: #F8F9FA;
+  --color-brandGrey-50: #F5F7F8;
+  --color-brandGrey-75: #F2F4F5;
+  --color-brandGrey-100: #EEEFF1;
+  --color-brandGrey-200: #DFE3E6;
+  --color-brandGrey-300: #CBD1D6;
+  --color-brandGrey-400: #B5BCC4;
+  --color-brandGrey-500: #A1A8B3;
+  --color-brandGrey-600: #8A929C;
+  --color-brandGrey-700: #6B7280;
+  --color-brandGrey-800: #4B5563;
+  --color-brandGrey-900: #374151;
+  
+  /* Limited Use 색상들 */
+  --color-tangerine: #FF9F00;
+  --color-pwcred: #FA143C;
+  --color-rose: #F05596;
+  
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -119,4 +147,251 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* 영어 텍스트용 Helvetica 폰트 설정 */
+  :lang(en),
+  .en {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+  }
+}
+
+@layer utilities {
+  .underline-hover {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out; /* 텍스트 색상 전환도 부드럽게 */
+  }
+
+  .underline-hover:hover {
+    color: #FD5108; /* 브랜드 오렌지 색상으로 변경 */
+  }
+
+  .underline-hover::before {
+    content: '';
+    position: absolute;
+    bottom: -20px; /* 헤더 하단 보더라인에 맞춰 조정 */
+    left: 50%;
+    width: 90%;
+    height: 3px;
+    background-color: #FD5108; /* 브랜드 오렌지 색상 */
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .underline-hover:hover::before,
+  .underline-hover.active::before {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .underline-hover.active {
+    color: #FD5108; /* 활성화된 텍스트도 브랜드 오렌지 색상으로 */
+  }
+
+  /* 스크롤바 숨김 */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
+
+  /* Brand Grey 색상 클래스들 */
+  .border-b-brandGrey-500 {
+    border-bottom-color: #A1A8B3;
+  }
+  
+  .border-brandGrey-500 {
+    border-color: #A1A8B3;
+  }
+  
+  .text-brandGrey-500 {
+    color: #A1A8B3;
+  }
+  
+  .bg-brandGrey-500 {
+    background-color: #A1A8B3;
+  }
+
+  /* 대시드 보더 클래스들 */
+  .border-b-dashed {
+    border-bottom-style: dashed;
+  }
+  
+  .border-dashed {
+    border-style: dashed;
+  }
+}
+
+/* 트리 구조 CSS */
+.tree {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  min-width: 100%;
+  overflow-x: auto;
+  /* 스크롤 시 왼쪽 부분이 잘리지 않도록 패딩 추가 */
+  padding-left: 50px;
+  padding-right: 50px;
+  /* 스크롤 동작 개선 */
+  scroll-behavior: smooth;
+  /* 스크롤바 스타일링 */
+  scrollbar-width: thin;
+  scrollbar-color: #CBD1D6 #F5F7F8;
+  /* 트리 컨테이너가 전체 너비를 사용하도록 설정 */
+  min-width: max-content;
+}
+
+.tree ul {
+  padding-top: 20px;
+  position: relative;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  min-width: max-content;
+  /* 트리 구조가 중앙에 위치하도록 설정 */
+  margin: 0 auto;
+}
+
+.tree li {
+  display: inline-block;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  flex-shrink: 0;
+}
+
+.tree li::before,
+.tree li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+
+.tree li:only-child::after,
+.tree li:only-child::before {
+  display: none;
+}
+
+.tree li:only-child {
+  padding-top: 0;
+}
+
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+  -webkit-border-radius: 0 5px 0 0;
+  -moz-border-radius: 0 5px 0 0;
+}
+
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+}
+
+.tree ul ul {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+  margin-left: -1px;
+}
+
+.tree li a {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 16px;
+  display: inline-block;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  min-width: 120px;
+  max-width: 150px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree li a:hover,
+.tree li a:hover + ul li a {
+  background: rgba(253, 81, 8, 0.1);
+  color: #000;
+  border: 1px solid rgba(253, 81, 8, 0.5);
+}
+
+.tree li a:hover + ul li::after,
+.tree li a:hover + ul li::before,
+.tree li a:hover + ul::before,
+.tree li a:hover + ul ul::before {
+  border-color: rgba(253, 81, 8, 0.5);
+}
+
+/* contentEditable placeholder 스타일 */
+[contentEditable]:empty:before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
+  font-size: 14px;
+}
+
+[contentEditable]:focus:empty:before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
+  font-size: 14px;
 }
